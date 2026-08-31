@@ -26,8 +26,12 @@ module.exports = {
     const queue = useQueue (interaction.guild.id);
     const position = interaction.options.getInteger('track-number');
 
-    if (position > queue.size) {
-      return interaction.reply('Woah there boss! The queue isn\'t that big! Use the queue command to see what I\'ve got coming up!');
+    if (queue.size < 1) {
+      return interaction.reply('There are no queued tracks to skip to.');
+    }
+
+    if (!Number.isInteger(position) || position < 1 || position > queue.size) {
+      return interaction.reply(`Please provide a track number between 1 and ${queue.size}. Use the queue command to see what I've got coming up!`);
     }
 
     const saveQueue = interaction.options.getBoolean('save-queue');

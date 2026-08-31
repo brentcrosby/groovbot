@@ -43,7 +43,7 @@ Groovbot is a Node.js Discord music bot built around slash commands, voice-chann
 - `src/commands/music` contains the active music slash commands.
 - `src/commands/utility` contains non-music utility slash commands.
 - `src/commands_disabled` contains disabled command work, currently `seek.js`.
-- `src/config/playerOptions.js` contains queue and playback defaults used by `/play`.
+- `src/config/playerOptions.js` contains the queue and playback defaults used when `/play` creates a player queue.
 - `src/utils/spotifyClient.js` wraps Spotify client-credentials token retrieval and caching.
 - `src/utils/musicUtils.js` contains voice-channel and active-queue guard helpers.
 - `src/modules/embeds.js` defines reusable Discord embed helpers, although the current command responses mostly use plain text.
@@ -142,9 +142,16 @@ Utility:
 - `/ping`
 - `/reload command:play`
 
+## Testing
+
+```bash
+npm test
+```
+
+The test suite uses Node's built-in test runner for focused command validation checks.
+
 ## Known Limitations
 
-- There is no configured test suite; `npm test` is still the default placeholder script.
 - The bot has no `npm start` script, so it is started directly with `node src/index.js`.
 - `src/commands_disabled/seek.js` is not loaded, and its file comment says it crashes the player.
 - `scripts/deploy-commands.js` reads `GUILD_ID` but does not use it because it registers global commands.

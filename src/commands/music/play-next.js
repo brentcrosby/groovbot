@@ -16,7 +16,7 @@ module.exports = {
     const player = useMainPlayer();
     const query = interaction.options.getString('query');
 
-    const check = ensureActiveQueueAndChannel(interaction);
+    const check = await ensureActiveQueueAndChannel(interaction);
     if (!check) return;
 
 
@@ -36,7 +36,7 @@ module.exports = {
     try {
       queue.insertTrack(result.tracks[0], 0);
       if (!queue.isPlaying()) {
-        await queue.node.play(null, options.audioPlayerOptions);
+        await queue.node.play();
       }
 
       await interaction.editReply(`Next up **${result.tracks[0]}**!`);

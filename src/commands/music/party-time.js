@@ -29,7 +29,7 @@ module.exports = {
       queue.insertTrack(result.tracks[0], 0);
       queue.node.skip();
       if (!queue.isPlaying()) {
-        await queue.node.play(null, options.audioPlayerOptions);
+        await queue.node.play();
       }
 
       await interaction.editReply(`GO TIME!`)

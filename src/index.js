@@ -27,8 +27,6 @@
 		(ext) => !["YouTubeExtractor"].includes(ext)
 	);
 
-	await client.login(token);
-
 	// Prevent crash on unhandled promise rejection
 	process.on("unhandledRejection", (reason) => console.error(reason));
 	process.on("uncaughtException", (error) => console.error(error));

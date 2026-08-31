@@ -21,8 +21,12 @@ module.exports = {
     const queue = useQueue (interaction.guild.id);
     const position = interaction.options.getInteger('track-number');
 
-    if (position > queue.size) {
-      return interaction.reply('Woah there boss! The queue isn\'t that big! Use the queue command to see what\s in there.');
+    if (queue.size < 1) {
+      return interaction.reply('There are no queued tracks to remove.');
+    }
+
+    if (!Number.isInteger(position) || position < 1 || position > queue.size) {
+      return interaction.reply(`Please provide a track number between 1 and ${queue.size}. Use the queue command to see what's in there.`);
     }
 
     queue.node.remove(position - 1);

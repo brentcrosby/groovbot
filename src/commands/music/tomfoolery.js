@@ -9,7 +9,7 @@ module.exports = {
     .setDescription('Ooh secret command'),
   async execute(interaction) {
 
-    const check = ensureActiveQueueAndChannel(interaction);
+    const check = await ensureActiveQueueAndChannel(interaction);
     if (!check) return;
 
     const queue = useQueue(interaction.guild.id);
@@ -29,7 +29,7 @@ module.exports = {
       queue.insertTrack(result.tracks[0], 0);
       queue.node.skip();
       if (!queue.isPlaying()) {
-        await queue.node.play(null, options.audioPlayerOptions);
+        await queue.node.play();
       }
 
       await interaction.editReply(`It appears there's a bit of tomfoolery afoot!`)

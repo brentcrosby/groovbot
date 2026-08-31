@@ -17,7 +17,7 @@ module.exports = {
       });
     }
 
-    const check = ensureActiveQueueAndChannel(interaction);
+    const check = await ensureActiveQueueAndChannel(interaction);
     if (!check) return;
 
     await history.previous(true);
